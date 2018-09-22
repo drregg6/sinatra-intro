@@ -1,12 +1,19 @@
 <html>
-    <head></head>
+    <head>
+        <style>
+            body {
+                text-align: center;
+                font-family: Verdana;
+                margin: 10em auto;
+            }
+        </style>
+    </head>
     <body>
+        <h1>
+            Your Guess: <%= guess %>
+        </h1>
         <p>
-            <% if defined?message %>
-                <%= message %>
-            <% else %>
-                Guess a number between 0 and 100!
-            <% end %>
+            <%= message %>
         </p>
 
         <form>

@@ -1,10 +1,11 @@
 require 'sinatra'
-require 'sinatra/reloader'
 
 SECRET_NUMBER = Random.rand(100)
 
 def check_guess(num)
-    if num - 9 > SECRET_NUMBER
+    if num == 0
+        "Guess between 1 and 99!"
+    elsif num - 9 > SECRET_NUMBER
         "WAY too high!"
     elsif num > SECRET_NUMBER
         "Too high"
@@ -25,4 +26,8 @@ get '/' do
         :message => message,
         :guess => guess
     }
+end
+
+get '/num' do
+    SECRET_NUMBER.to_s
 end
