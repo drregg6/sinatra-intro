@@ -6,9 +6,26 @@
                 font-family: Verdana;
                 margin: 10em auto;
             }
+            .wrong-answer {
+                background: #f00;
+            }
+            .right-answer {
+                background: #090;
+            }
+            .close-answer {
+                background: #f66;
+            }
         </style>
     </head>
-    <body>
+    <body
+        <% if bg_flag == :correct %>
+            <%= 'class="right-answer"' %>
+        <% elsif bg_flag == :wrong %>
+            <%= 'class="wrong-answer"' %>
+        <% elsif bg_flag == :close %>
+            <%= 'class="close-answer"' %>
+        <% end %>
+    >
         <h1>
             Your Guess: <%= guess %>
         </h1>
@@ -26,5 +43,9 @@
                 The SECRET NUMBER is <%= num %>
             <% end %>
         </p>
+
+        <script>
+
+        </script>
     </body>
 </html>
