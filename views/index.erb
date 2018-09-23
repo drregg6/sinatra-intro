@@ -39,7 +39,7 @@
         </form>
 
         <p>
-            <% if guess == num %>
+            <% if guess == num || cheat == "true" %>
                 The SECRET NUMBER is <%= num %>
             <% end %>
         </p>

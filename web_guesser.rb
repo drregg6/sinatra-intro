@@ -1,8 +1,10 @@
 require 'sinatra'
 
 SECRET_NUMBER = Random.rand(100)
+@@guess_count = 5
 msg = ""
 bg_flag = :neutral
+
 
 def check_guess(num)
     if num == 0
@@ -31,11 +33,13 @@ get '/' do
     guess = params["guess"].to_i
     message = check_guess(guess)[1]
     bg_flag = check_guess(guess)[0]
+    cheat = params["cheat"]
     erb :index, :locals => {
         :num => SECRET_NUMBER,
         :message => message,
         :guess => guess,
-        :bg_flag => bg_flag
+        :bg_flag => bg_flag,
+        :cheat => cheat
     }
 end
 
