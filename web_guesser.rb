@@ -24,7 +24,6 @@ def check_guess(num)
         msg = "Too low"
     elsif num == SECRET_NUMBER
         bg_flag = :correct
-        msg = "YOU GOT IT RIGHT!"
     end
     return [bg_flag, msg]
 end
@@ -34,6 +33,21 @@ get '/' do
     message = check_guess(guess)[1]
     bg_flag = check_guess(guess)[0]
     cheat = params["cheat"]
+
+    if @@guess_count == 1
+        message = "You lose! The secret number was #{SECRET_NUMBER}"
+
+        SECRET_NUMBER = Random.rand(100)
+        @@guess_count = 5
+    elsif bg_flag == :correct
+        message = "You win!"
+
+        SECRET_NUMBER = Random.rand(100)
+        @@guess_count = 5
+    elsif @@guess_count != 1 || bg_flag != :correct
+        @@guess_count -= 1
+    end
+
     erb :index, :locals => {
         :num => SECRET_NUMBER,
         :message => message,
